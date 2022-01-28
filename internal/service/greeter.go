@@ -3,9 +3,9 @@ package service
 import (
 	"context"
 
-	v1 "realworld/api/helloworld/v1"
-	"realworld/internal/biz"
 	"github.com/go-kratos/kratos/v2/log"
+	v1 "realworld/api/realworld/v1"
+	"realworld/internal/biz"
 )
 
 // GreeterService is a greeter service.
@@ -21,7 +21,7 @@ func NewGreeterService(uc *biz.GreeterUsecase, logger log.Logger) *GreeterServic
 	return &GreeterService{uc: uc, log: log.NewHelper(logger)}
 }
 
-// SayHello implements helloworld.GreeterServer
+// SayHello implements realworld.GreeterServer
 func (s *GreeterService) SayHello(ctx context.Context, in *v1.HelloRequest) (*v1.HelloReply, error) {
 	s.log.WithContext(ctx).Infof("SayHello Received: %v", in.GetName())
 
