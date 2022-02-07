@@ -1,0 +1,8 @@
+GET http://localhost:8000/helloworld/111
+Accept: application/json
+
+###
+GET http://localhost:8000/helloworld/echo
+Accept: application/json
+
+###
