@@ -51,6 +51,11 @@ build:
 generate:
 	go generate ./...
 
+.PHONY: wire
+# wire
+wire:
+	cd cmd/realworld/ && wire
+
 .PHONY: all
 # generate all
 all:
