@@ -56,6 +56,11 @@ generate:
 wire:
 	cd cmd/realworld/ && wire
 
+.PHONY: run
+# run
+run:
+	go run ./cmd/realworld
+
 .PHONY: all
 # generate all
 all:
