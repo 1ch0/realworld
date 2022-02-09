@@ -2,8 +2,9 @@ package data
 
 import (
 	"context"
-	"github.com/go-kratos/kratos/v2/log"
 	"realworld/internal/biz"
+
+	"github.com/go-kratos/kratos/v2/log"
 )
 
 type userRepo struct {
@@ -22,6 +23,11 @@ func NewUserRepo(data *Data, logger log.Logger) biz.UserRepo {
 func (r *userRepo) CreateUser(ctx context.Context, g *biz.User) error {
 	//r.data.db.Create()
 	return nil
+}
+
+func (r *userRepo) GetUserByEmail(ctx context.Context, email string) (*biz.User, error) {
+	//r.data.db.Create()
+	return nil, nil
 }
 
 type profileRepo struct {
