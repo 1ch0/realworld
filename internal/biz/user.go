@@ -4,15 +4,15 @@ import (
 	"context"
 	"errors"
 	"fmt"
-
-	"golang.org/x/crypto/bcrypt"
+	"realworld/internal/conf"
+	"realworld/internal/pkg/middleware/auth"
 
 	"github.com/go-kratos/kratos/v2/log"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type User struct {
 	Email        string
-	Token        string
 	Username     string
 	Bio          string
 	Image        string
@@ -21,8 +21,8 @@ type User struct {
 
 type UserLogin struct {
 	Email    string
-	Token    string
 	Username string
+	Token    string
 	Bio      string
 	Image    string
 }
@@ -46,20 +46,32 @@ func verifyPassword(hashed, input string) bool {
 type UserRepo interface {
 	CreateUser(ctx context.Context, user *User) error
 	GetUserByEmail(ctx context.Context, email string) (*User, error)
+	GetUserByUsername(ctx context.Context, username string) (*User, error)
 }
 
 type ProfileRepo interface {
+	GetProfile(ctx context.Context, username string) (*Profile, error)
+	FollowUser(ctx context.Context, username string) (*Profile, error)
+	UnfollowUser(ctx context.Context, username string) (*Profile, error)
 }
 
 type UserUsecase struct {
-	ur UserRepo
-	pr ProfileRepo
+	ur   UserRepo
+	pr   ProfileRepo
+	jwtc *conf.JWT
 
 	log *log.Helper
 }
 
-func NewUserUsecase(ur UserRepo, pr ProfileRepo, logger log.Logger) *UserUsecase {
-	return &UserUsecase{ur: ur, pr: pr, log: log.NewHelper(logger)}
+type Profile struct {
+}
+
+func NewUserUsecase(ur UserRepo, pr ProfileRepo, logger log.Logger, jwtc *conf.JWT) *UserUsecase {
+	return &UserUsecase{ur: ur, pr: pr, jwtc: jwtc, log: log.NewHelper(logger)}
+}
+
+func (uc *UserUsecase) generateToken(username string) string {
+	return auth.GenerateToken(uc.jwtc.Token, username)
 }
 
 func (uc *UserUsecase) Register(ctx context.Context, username, email, password string) (*UserLogin, error) {
@@ -74,7 +86,7 @@ func (uc *UserUsecase) Register(ctx context.Context, username, email, password s
 	return &UserLogin{
 		Email:    email,
 		Username: username,
-		Token:    "xxx",
+		Token:    uc.generateToken(username),
 	}, nil
 }
 
@@ -86,11 +98,16 @@ func (uc *UserUsecase) Login(ctx context.Context, email, password string) (*User
 	if !verifyPassword(u.PasswordHash, password) {
 		return nil, errors.New("login failed")
 	}
+
 	return &UserLogin{
 		Email:    u.Email,
 		Username: u.Username,
 		Bio:      u.Bio,
 		Image:    u.Image,
-		Token:    "xxx",
+		Token:    uc.generateToken(u.Username),
 	}, nil
+}
+
+func (uc *UserUsecase) GetCurrentUser(ctx context.Context) (*User, error) {
+	return nil, nil
 }
