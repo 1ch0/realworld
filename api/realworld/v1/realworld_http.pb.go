@@ -6,6 +6,7 @@ package v1
 
 import (
 	context "context"
+
 	http "github.com/go-kratos/kratos/v2/transport/http"
 	binding "github.com/go-kratos/kratos/v2/transport/http/binding"
 )
@@ -76,8 +77,8 @@ func _RealWorld_Login0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.Conte
 		if err != nil {
 			return err
 		}
-		reply := out.(*UserResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*UserResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -95,8 +96,8 @@ func _RealWorld_Register0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.Co
 		if err != nil {
 			return err
 		}
-		reply := out.(*UserResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*UserResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -114,8 +115,8 @@ func _RealWorld_GetCurrentUser0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx h
 		if err != nil {
 			return err
 		}
-		reply := out.(*UserResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*UserResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -133,8 +134,8 @@ func _RealWorld_UpdateUser0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.
 		if err != nil {
 			return err
 		}
-		reply := out.(*UserResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*UserResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -155,8 +156,8 @@ func _RealWorld_GetProfile0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.
 		if err != nil {
 			return err
 		}
-		reply := out.(*ProfileResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*ProfileResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -177,8 +178,8 @@ func _RealWorld_FollowUser0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.
 		if err != nil {
 			return err
 		}
-		reply := out.(*ProfileResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*ProfileResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -199,8 +200,8 @@ func _RealWorld_UnfollowUser0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx htt
 		if err != nil {
 			return err
 		}
-		reply := out.(*ProfileResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*ProfileResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -218,8 +219,8 @@ func _RealWorld_ListArticles0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx htt
 		if err != nil {
 			return err
 		}
-		reply := out.(*MultipleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*MultipleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -237,8 +238,8 @@ func _RealWorld_FeedArticles0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx htt
 		if err != nil {
 			return err
 		}
-		reply := out.(*MultipleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*MultipleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -259,8 +260,8 @@ func _RealWorld_GetArticles0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -278,8 +279,8 @@ func _RealWorld_CreateArticle0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx ht
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -300,8 +301,8 @@ func _RealWorld_UpdateArticle0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx ht
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -322,8 +323,8 @@ func _RealWorld_DeleteArticle0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx ht
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -344,8 +345,8 @@ func _RealWorld_AddComment0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleCommentResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleCommentResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -366,8 +367,8 @@ func _RealWorld_GetComment0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.
 		if err != nil {
 			return err
 		}
-		reply := out.(*MultipleCommentResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*MultipleCommentResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -388,8 +389,8 @@ func _RealWorld_DeleteComment0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx ht
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleCommentResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleCommentResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -410,8 +411,8 @@ func _RealWorld_FavoriteArticle0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx 
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -432,8 +433,8 @@ func _RealWorld_UnfavoriteArticle0_HTTP_Handler(srv RealWorldHTTPServer) func(ct
 		if err != nil {
 			return err
 		}
-		reply := out.(*SingleArticleResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*SingleArticleResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
@@ -451,8 +452,8 @@ func _RealWorld_GetTags0_HTTP_Handler(srv RealWorldHTTPServer) func(ctx http.Con
 		if err != nil {
 			return err
 		}
-		reply := out.(*TagListResponse)
-		return ctx.Result(200, reply)
+		Response := out.(*TagListResponse)
+		return ctx.Result(200, Response)
 	}
 }
 
